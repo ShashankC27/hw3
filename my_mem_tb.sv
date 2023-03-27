@@ -7,7 +7,6 @@ module my_mem_tb;
     reg [7:0] data_in;
     wire [8:0] data_out;
     reg [15:0] address;
-    my_mem tb(.clk(clk),.write(write),.read(read),.data_in(data_in),.address(address),.data_out(data_out));
     
     integer i,size=6,error_count=0,j=0;
 
@@ -18,8 +17,9 @@ module my_mem_tb;
         bit [7:0] Actual_data_Read;  
     }memorystructure;
 
-    struct memorystructure memarray[6];
-
+    memorystructure memarray[6];
+    my_mem tb(.clk(clk),.write(write),.read(read),.data_in(data_in),.address(address),.data_out(data_out));
+    
     initial begin
         clk=0;
         write=0;
