@@ -104,10 +104,12 @@ task shufflefun();
 integer s,k;
 memorystructure tmp;
     for( s=0;s<size;s++) begin
-        k=$random(6);
+        k=$urandom_range(s,6);
+        if(s<5) begin
          tmp = memarray[s];
          memarray[i]=memarray[k];
          memarray[k]=tmp;
+        end
     end
 endtask
 endmodule
