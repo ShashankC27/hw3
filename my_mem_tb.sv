@@ -102,10 +102,10 @@ endtask
 
 task shufflefun();
     for(int s=0;s<size;s++) begin
-         int k=$random(i,9);
+         int k=$random(s,6);
          memorystructure tmp = memarray[s];
-         memarray[i]=memarray[j];
-         memarray[j]=tmp;
+         memarray[i]=memarray[k];
+         memarray[k]=tmp;
     end
 endtask
 endmodule
