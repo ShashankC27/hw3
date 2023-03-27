@@ -101,8 +101,9 @@ task lastdisplay();
 endtask
 
 task shufflefun();
-    for(integer s=0;s<size;s++) begin
-         integer k=$random(s,6);
+integer s,k;
+    for( s=0;s<size;s++) begin
+        k=$random(s,6);
          memorystructure tmp = memarray[s];
          memarray[i]=memarray[k];
          memarray[k]=tmp;
