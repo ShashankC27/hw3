@@ -107,7 +107,7 @@ memorystructure tmp;
         k=$urandom_range(s,6);
         if(s<5) begin
          tmp = memarray[s];
-         memarray[i]=memarray[k];
+         memarray[s]=memarray[k];
          memarray[k]=tmp;
         end
     end
