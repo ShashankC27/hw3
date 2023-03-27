@@ -52,9 +52,7 @@ module my_mem_tb;
             j++;
         end
         else if(j==6) begin
-            for (i = 0; i < size; i++) begin
-            //$display("key = %h, value = %h", address_arr[i], data_read_expect_assoc[address_arr[i]]);
-            end
+            shufflefun();
             j++;
         end
         else if(j>6 && j<13 ) begin
@@ -100,5 +98,14 @@ task lastdisplay();
             $display("elements = %h",memarray[i].Actual_data_Read);
     end
         //end
+endtask
+
+task shufflefun();
+    for(int s=0;s<size;s++) begin
+         int k=$random(i,9);
+         memorystructure tmp = memarray[s];
+         memarray[i]=memarray[j];
+         memarray[j]=tmp;
+    end
 endtask
 endmodule
