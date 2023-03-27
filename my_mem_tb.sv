@@ -17,13 +17,14 @@ module my_mem_tb;
         bit [7:0] Actual_data_Read;  
     } memorystructure;
 
-    memorystructure memarray[] = new memorystructure[6];
+    memorystructure memarray[];
     my_mem tb(.clk(clk),.write(write),.read(read),.data_in(data_in),.address(address),.data_out(data_out));
     
     initial begin
         clk=0;
         write=0;
         read=0;
+        memarray =new[6];
     end
 
     initial begin
