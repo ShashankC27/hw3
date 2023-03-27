@@ -41,6 +41,7 @@ module my_mem_tb;
         for (i = 0; i < size; i++) begin
             memarray[i].Address_to_rw = $unsigned($urandom());
             memarray[i].Data_to_Write = $urandom();
+            $display("VAlues feed are %h and %h",memarray[i].Address_to_rw ,memarray[i].Data_to_Write);
         end
 
     end
