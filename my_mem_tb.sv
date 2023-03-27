@@ -25,7 +25,7 @@ module my_mem_tb;
         write=0;
         read=0;
         memarray =new[6];
-        tmp=new;
+        tmp=0;
     end
 
     initial begin
