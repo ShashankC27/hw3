@@ -21,7 +21,7 @@ module my_mem_tb;
 
     initial begin
         clk=0;
-        memory_structure memarray [size];
+        memory_structure memarray[size];
         write=0;
         read=0;
     end
