@@ -10,14 +10,14 @@ module my_mem_tb;
     
     integer i,size=6,error_count=0,j=0;
 
-    struct {
+    typedef struct {
         bit [15:0] Address_to_rw;
         bit [7:0] Data_to_Write;
         bit [7:0] Expected_data_Read;
         bit [7:0] Actual_data_Read;  
     } memorystructure;
 
-    memorystructure memarray;
+    memorystructure memarray[];
     my_mem tb(.clk(clk),.write(write),.read(read),.data_in(data_in),.address(address),.data_out(data_out));
     
     initial begin
