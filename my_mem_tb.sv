@@ -104,7 +104,7 @@ task shufflefun();
 integer s,k;
 memorystructure tmp;
     for( s=0;s<size;s++) begin
-        k=$random(s,6);
+        k=$random(6);
          tmp = memarray[s];
          memarray[i]=memarray[k];
          memarray[k]=tmp;
