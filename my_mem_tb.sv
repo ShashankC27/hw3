@@ -11,13 +11,13 @@ module my_mem_tb;
     
     integer i,size=6,error_count=0,j=0;
 
-    typedef struct {
+    struct memory_structure{
         reg [15:0] Address_to_rw;
         reg [7:0] Data_to_Write;
         reg [7:0] Expected_data_Read;
         reg [7:0] Actual_data_Read;
         
-    } memory_structure;
+    };
 
     initial begin
         clk=0;
