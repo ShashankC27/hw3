@@ -18,7 +18,7 @@ module my_mem_tb;
         bit [7:0] Actual_data_Read;  
     }memorystructure;
 
-    struct memorystructure memarray [6];
+    struct memorystructure memarray[6];
 
     initial begin
         clk=0;
