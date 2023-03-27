@@ -11,17 +11,16 @@ module my_mem_tb;
     
     integer i,size=6,error_count=0,j=0;
 
-    struct memory_structure {
+    struct memorystructure {
         bit [15:0] Address_to_rw;
         bit [7:0] Data_to_Write;
         bit [7:0] Expected_data_Read;
-        bit [7:0] Actual_data_Read;
-        
+        bit [7:0] Actual_data_Read;  
     };
 
     initial begin
         clk=0;
-        memory_structure memarray[size];
+        memorystructure memarray[size];
         write=0;
         read=0;
     end
