@@ -17,7 +17,7 @@ module my_mem_tb;
         bit [7:0] Actual_data_Read;  
     } memorystructure;
 
-    memorystructure memarray[];
+    memorystructure memarray[],tmp;
     my_mem tb(.clk(clk),.write(write),.read(read),.data_in(data_in),.address(address),.data_out(data_out));
     
     initial begin
@@ -25,6 +25,7 @@ module my_mem_tb;
         write=0;
         read=0;
         memarray =new[6];
+        tmp=new;
     end
 
     initial begin
@@ -104,7 +105,6 @@ task shufflefun();
 integer s,k;
     for( s=0;s<size;s++) begin
         k=$random(s,6);
-         memorystructure tmp;
          tmp = memarray[s];
          memarray[i]=memarray[k];
          memarray[k]=tmp;
