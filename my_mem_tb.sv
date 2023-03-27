@@ -18,9 +18,10 @@ module my_mem_tb;
         bit [7:0] Actual_data_Read;  
     }memorystructure;
 
+    memorystructure memarray [size];
+    
     initial begin
         clk=0;
-        memorystructure memarray [size];
         write=0;
         read=0;
     end
