@@ -10,11 +10,12 @@ module my_mem_tb;
     
     integer i,size=6,error_count=0,j=0;
 
+    //declared an structure with the mentioned features that are add,data,expected arra adn actual data
     typedef struct {
         bit [15:0] Address_to_rw;
         bit [7:0] Data_to_Write;
-        bit [7:0] Expected_data_Read;
-        bit [7:0] Actual_data_Read;  
+        bit [8:0] Expected_data_Read;
+        bit [8:0] Actual_data_Read;  
     } memorystructure;
 
     memorystructure memarray[];
@@ -24,7 +25,7 @@ module my_mem_tb;
         clk=0;
         write=0;
         read=0;
-        memarray =new[6];
+        memarray =new[6];//declaiung the array structure with name memarray
     end
 
     initial begin
@@ -48,45 +49,46 @@ module my_mem_tb;
 
     always @(posedge clk ) begin
         if(j<size) begin
-            writefunc(j);
+            writefunc(j); //calling the write func to write into the memory
             j++;
         end
         else if(j==6) begin
-            shufflefun();
+            shufflefun();//using this to shuffle the array after inserting the data and filling the array structure with address and data and expected array
             j++;
         end
         else if(j>6 && j<13 ) begin
-            readfunc(j);
+            readfunc(j); //callign the read func to read the memory data
             j++;
         end
         else if(j==13) begin
-            lastdisplay();
+            lastdisplay(); // displaying the structure with data received and address
             j++;
         end
         else begin
-            $finish;
+            $finish; // finishing the run
         end
     end
 
 task writefunc(integer j);
-    data_in=memarray[j].Data_to_Write;
-    address=memarray[j].Address_to_rw;
-    memarray[j].Expected_data_Read = data_in;
-    write=1;
+    data_in=memarray[j].Data_to_Write;//inserting data
+    address=memarray[j].Address_to_rw;// inserting address
+    memarray[j].Expected_data_Read = {^memarray[j].Data_to_Write,memarray[j].Data_to_Write}; //inserting the expected array
+    write=1;//enabling write pin
     #10;
     write=0;
 endtask
 
 task readfunc(integer j);
-    address=memarray[j-7].Address_to_rw;
-    read=1;
+    address=memarray[j-7].Address_to_rw; // reading the address
+    read=1;//enabling read high
     //clk=0;
     #10;
     //$display("and values are = %h",data_out);
     //$display("and values are = %h",data_read_expect_assoc[address]);
-    memarray[j-7].Actual_data_Read = data_out[7:0];//excluding the parity
+    memarray[j-7].Actual_data_Read = data_out;//excluding the parity
     if(memarray[j-7].Actual_data_Read != memarray[j-7].Expected_data_Read) begin
-        error_count++;
+        $display("Obtained Error : Expected data %h and Actualdata received is %h",memarray[j-7].Expected_data_Read,memarray[j-7].Actual_data_Read);
+        error_count++;//if expected is not mathced to received data its error and added
         end
     read=0;
 endtask
@@ -100,16 +102,14 @@ task lastdisplay();
         //end
 endtask
 
-task shufflefun();
+task shufflefun();//shuffling the structure
 integer s,k;
-memorystructure tmp;
+memorystructure tmp;//used general shuffling method
     for( s=0;s<size;s++) begin
-        k=$urandom_range(s,6);
-        if(s<5) begin
+        k=$urandom_range(s,6);//using random range between the iterate number and maximum size
          tmp = memarray[s];
          memarray[s]=memarray[k];
          memarray[k]=tmp;
         end
-    end
 endtask
 endmodule
