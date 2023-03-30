@@ -106,7 +106,7 @@ task shufflefun();//shuffling the structure
 integer s,k;
 memorystructure tmp;//used general shuffling method
     for( s=0;s<size;s++) begin
-        k=$urandom_range(s,6);//using random range between the iterate number and maximum size
+        k=$urandom_range(s,5);//using random range between the iterate number and maximum size
          tmp = memarray[s];
          memarray[s]=memarray[k];
          memarray[k]=tmp;
